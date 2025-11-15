@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         if (!_isReturning)
         {
-            if (Vector2.Distance(transform.position, _initialPosition + _moveTarget) < 0.1f)
+            if (Vector2.Distance(transform.position, _initialPosition + _moveTarget) < 1f)
             {
                 _isReturning = true;
                 _currentMoveDirection = (_initialPosition - (Vector2) transform.position).normalized;
@@ -83,7 +83,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
         else
         {
-            if (Vector2.Distance(transform.position, _initialPosition) < 0.1f)
+            if (Vector2.Distance(transform.position, _initialPosition) < 1f)
             {
                 _isReturning = false;
                 _currentMoveDirection = (_initialPosition + _moveTarget - (Vector2) transform.position).normalized;
@@ -138,27 +138,13 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void OnDrawGizmos()
     {
-        if (Application.isPlaying)
+        if (useTransform)
         {
-            if (useTransform)
-            {
-                Debug.DrawLine(_initialPosition, (Vector3)_initialPosition + moveDestination.localPosition, Color.yellow);
-            }
-            else
-            {
-                Debug.DrawLine(_initialPosition, (Vector3)_initialPosition + (Vector3)movePosition, Color.red);
-            }
+            Debug.DrawLine(transform.position, transform.position + moveDestination.localPosition, Color.yellow);
         }
         else
         {
-            if (useTransform)
-            {
-                Debug.DrawLine(transform.position, transform.position + moveDestination.localPosition, Color.yellow);
-            }
-            else
-            {
-                Debug.DrawLine(transform.position, transform.position + (Vector3)movePosition, Color.red);
-            }
+            Debug.DrawLine(transform.position, transform.position + (Vector3)movePosition, Color.red);
         }
         
     }

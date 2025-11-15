@@ -113,7 +113,6 @@ namespace AI
         private void OnDrawGizmos()
         {
             Debug.DrawLine(transform.position, patrolPoints[0].position, Color.red);
-            
             for (var index = 1; index < patrolPoints.Length; index++)
             {
                 var patrolPoint = patrolPoints[index];
